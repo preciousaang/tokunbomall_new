@@ -17,7 +17,7 @@
               <input type="checkbox" name="checkbox" checked="">
               Forgot Password ?</label>
             </span>
-            <p><a href="#">Click Here</a> </p>
+            <p><a href="{{route('password.request')}}">Click Here</a> </p>
             <div class="clearfix"> </div>
           </div>
           <form action="{{route('login')}}" method="post">

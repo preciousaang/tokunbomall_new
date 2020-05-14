@@ -21,7 +21,10 @@ class LoginController extends Controller
     public function login(Request $request){
         $credentials = $request->only('username', 'password');
         if(Auth::attempt($credentials)){
-            return redirect()->intended(route('home'));
+            if(auth()->user()->is_admin==1){
+                return redirect()->intended(route('dashboard'));
+            }
+            return redirect()->intended(route('my-ads'));
         }else{
             $user = User::where('username', $request->post('username'))->first();
             if($user){
@@ -29,7 +32,10 @@ class LoginController extends Controller
                     $user->password = bcrypt($request->post('password'));
                     $user->save();
                     Auth::login($user);
-                    return redirect()->intended(route('home'));
+                    if(auth()->user()->is_admin==1){
+                        return redirect()->intended(route('dashboard'));
+                    }
+                    return redirect()->intended(route('my-ads'));
                 }else{
                     return redirect()->back()->with('error', 'Username/Password Combo Incorrect');
                 }

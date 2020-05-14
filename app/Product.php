@@ -50,4 +50,8 @@ class Product extends Model
         'approved' => 'boolean',
         'featured' => 'boolean',
     ];
+
+    protected $dispatchesEvents = [
+        'deleted' => 'App\Events\ProductDeleted',
+    ];
 }

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('title', $product->title)
 @section('content')
-@include("layouts.banner.php")
+@include("layouts.banner")
 <div class="single-page main-grid-border">
   <div class="container">
     <ol class="breadcrumb" style="margin-bottom: 5px;">
@@ -12,35 +12,28 @@
     <div class="product-desc">
       <div class="col-md-7 product-view">
         <h2>{{$product->title}}</h2>
-
         <p> <i class="glyphicon glyphicon-map-marker"></i>
             <a href="#">{{$product->region->state->state}}</a>,
             <a href="#">{{$product->region->local_govt}}</a>| Added at {{$product->created_at}}, Ad ID: {{$product->id}}</p>
         <div class="flexslider slides">
           <ul class="slides">
-            <?php
-        		$img_array = json_decode($product->product_image);
-				foreach($img_array as $key=>$value):
-				$test = explode('.', $value);
-				if(strlen($test[1])>2){
-        	?>
-            <li data-thumb="<?php echo url_root.$product->upload_dir."/{$value}"; ?>"> <img src="<?php echo url_root.$product->upload_dir."/{$value}"; ?>" /> </li>
-				<?php } endforeach; ?>
+            @foreach(json_decode($product->product_image) as $image)
+            <li data-thumb="{{asset('uploads/'.$image)}}"> <img src="{{asset('uploads/'.$image)}}" /> </li>
+            @endforeach
           </ul>
         </div>
-
         <!-- //FlexSlider -->
         <div class="product-details">
-          <h4>Brand : <a href="#"><?php echo $product->title; ?></a></h4>
-          <h4>Views : <strong><?php echo $product->views; ?></strong></h4>
-          <p><strong>Summary</strong> : <?php echo nl2br(strip_tags($product->summary)); ?></p>
+          <h4>Brand : <a href="#">{{$product->title}}</a></h4>
+          <h4>Views : <strong>{{$product->views}}</strong></h4>
+          <p><strong>Summary</strong> : {!! $product->summary !!}</p>
         </div>
       </div>
       <div class="col-md-5 product-details-grid">
         <div class="item-price">
           <div class="product-price">
             <p class="p-price">Price</p>
-            <h3 class="rate">₦<?php echo number_format($product->price); ?></h3>
+            <h3 class="rate">₦{{number_format($product->price)}}</h3>
             <div class="clearfix"></div>
           </div>
           <div class="condition">
@@ -50,13 +43,13 @@
           </div>
           <div class="itemtype">
             <p class="p-price">Item Type</p>
-            <h4><?php echo $product->find_product_category(); ?></h4>
+            <h4>{{$product->category->title}}</h4>
             <div class="clearfix"></div>
           </div>
         </div>
         <div class="interested text-center">
           <h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
-          <p><i class="glyphicon glyphicon-earphone"></i><?php echo $prod_user->phone; ?></p>
+          <p><i class="glyphicon glyphicon-earphone"></i>{{$product->user->phone}}</p>
         </div>
         <div class="tips">
           <h4>Safety Tips for Buyers</h4>

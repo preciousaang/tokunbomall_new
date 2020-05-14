@@ -18,9 +18,9 @@
 
 
         @foreach($trending_products as $trend)
-          <div class="featured-ad"> <a href="">
+          <div class="featured-ad"> <a href="{{route('single-product', ['id'=>$trend->id, 'slug'=>$trend->slug])}}">
 
-            <div class="featured-ad-left"> <img src="{{asset('storage/uploads/'.json_decode($trend->product_image)[0])}}" title="ad image" alt="" /> </div>
+            <div class="featured-ad-left"> <img src="{{asset('uploads/'.json_decode($trend->product_image)[0])}}" title="ad image" alt="" /> </div>
             <div class="featured-ad-right">
               <h4><?php echo $trend->title; ?></h4>
               <p>₦<?php echo number_format($trend->price); ?></p>
@@ -52,9 +52,9 @@
                     <ul class="list">
 
                       @forelse($products as $product)
-                      <a href="">
+                      <a href="{{route('single-product', ['id'=>$product->id, 'slug'=>$product->slug])}}">
 
-                      <li> <img src="{{asset('storage/uploads/'.json_decode($product->product_image)[0])}}" title="" alt="" />
+                      <li> <img src="{{asset('uploads/'.json_decode($product->product_image)[0])}}" title="" alt="" />
                         <section class="list-left">
                           <h5 class="title"><?php echo $product->title; ?></h5>
                           <span class="adprice">₦<?php echo number_format($product->price); ?></span>

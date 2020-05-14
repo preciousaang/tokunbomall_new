@@ -35,6 +35,9 @@ class RegistrationController extends Controller
         ]);
 
         if($newUser){
+            if($request->wantsJson()){
+                return response()->json(['success'=>'User Registered Successfully']);
+            }
             return redirect()->route('login-form')->with('success', 'Registration Successful. Please Login');
         }
     }

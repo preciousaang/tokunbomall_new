@@ -19,9 +19,11 @@
           <strong style="color: rgb(243, 197, 0); font-size:18px;">{{strtoupper(auth()->user()->full_name)}}</strong><span class="caret"></span></a>
         <ul class="dropdown-menu">
 
-		<li><a href=""><strong style="color: rgb(243, 197, 0); font-size:18px;">Dashboard</strong></a>
-          <li><a href=""><strong style="color: rgb(243, 197, 0); font-size:18px;">Profile</strong></a></li>
-          <li><a href=""><strong style="color: rgb(243, 197, 0); font-size:18px;">My Ads</strong></a></li>
+            @if(auth()->user()->is_admin == 1)
+		<li><a href="{{route('dashboard')}}"><strong style="color: rgb(243, 197, 0); font-size:18px;">Dashboard</strong></a></li>
+        @endif
+          <li><a href="{{route('edit-profile-form')}}"><strong style="color: rgb(243, 197, 0); font-size:18px;">Profile</strong></a></li>
+          <li><a href="{{route('my-ads')}}"><strong style="color: rgb(243, 197, 0); font-size:18px;">My Ads</strong></a></li>
           <li><a href="{{route('logout')}}"><strong style="color: rgb(243, 197, 0); font-size:18px;">Logout</strong></a></li>
         </ul>
       </li>

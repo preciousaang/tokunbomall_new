@@ -65,6 +65,12 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'public_uploads_path' => [
+            'driver' => 'local',
+            'root' => public_path().'/uploads',
+            'visibility' => 'public'
+        ]
+
     ],
 
     /*
