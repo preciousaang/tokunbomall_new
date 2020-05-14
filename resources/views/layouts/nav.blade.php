@@ -9,7 +9,10 @@
 </style>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header logo"> <img src="{{asset('images/Logo.jpeg')}}" /> </div>
+    <div class="navbar-header logo">
+      <a href="{{route('homepage')}}"> 
+      <img src="{{asset('images/Logo.jpeg')}}" /> 
+    </a></div>
     <ul class="nav navbar-nav navbar-right">
 
 

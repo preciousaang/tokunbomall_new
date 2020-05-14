@@ -39,7 +39,7 @@
        	<tbody>
        		<tr>
        			<td><input name="options[]" type="checkbox" value="{{$product->id}}"></td>
-       			<td><?php echo $product->user->full_naame; ?></td>
+       			<td>{{$product->user->full_naame}}</td>
        			<td>{{$product->title}}</td>
        			<td>{{__("₦").$product->price}}</td>
        			<td>{{$product->category->title}}></td>

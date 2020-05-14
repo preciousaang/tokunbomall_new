@@ -2,6 +2,7 @@
 @section('title', $product->title)
 @section('content')
 @include("layouts.banner")
+
 <div class="single-page main-grid-border">
   <div class="container">
     <ol class="breadcrumb" style="margin-bottom: 5px;">

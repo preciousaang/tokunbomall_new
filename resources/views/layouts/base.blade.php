@@ -1,7 +1,7 @@
 <!DOCTYPE html>
         <html>
         <head>
-        <link rel="icon" href="assets/images/Logo.jpeg" />
+        <link rel="icon" href="{{asset('images/Logo.jpeg')}}" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="description" content="The Biggest online Market for selling used things">

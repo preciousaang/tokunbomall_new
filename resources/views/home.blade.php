@@ -1,6 +1,7 @@
 @extends('layouts.base')
 @section('title', 'The Biggest online Market for selling used things')
 @section('content')
+@include('layouts.banner')
 <div class="content">
   <div class="categories">
     <div class="container">

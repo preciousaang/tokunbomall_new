@@ -5,7 +5,7 @@
   <div id="page-wrapper" class="sign-in-wrapper">
     <div class="graphs">
       <div class="sign-up">
-        <h1>Enter Email For Confirmation</h1>        
+        <h1 style="font-size: 150%;">Enter Email For Confirmation</h1>        
         <div class="reg-form">
         	@include('partials.partials')
           <form action="{{route('password.email')}}" method="post">
