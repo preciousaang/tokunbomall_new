@@ -48,18 +48,18 @@
                 <div class="col-md-3 footer-grid">
                   <h4 class="footer-head">Help</h4>
                   <ul>
-                    <li><a href="">How it Works</a></li>
-                    <li><a href="">Sitemap</a></li>
-                    <li><a href="">Faq</a></li>
-                    <li><a href="">Feedback</a></li>
+                    <li><a href="{{route('how-it-works')}}">How it Works</a></li>
+                    <li><a href="{{route('sitemap')}}">Sitemap</a></li>
+                    <li><a href="#">Faq</a></li>
+                    <li><a href="#">Feedback</a></li>
 
                   </ul>
                 </div>
                 <div class="col-md-3 footer-grid">
                   <h4 class="footer-head">Information</h4>
                   <ul>
-                    <li><a href="terms.html">Terms of Use</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
                   </ul>
                 </div>
                 <div class="col-md-3 footer-grid">

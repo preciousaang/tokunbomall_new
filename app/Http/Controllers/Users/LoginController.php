@@ -37,10 +37,10 @@ class LoginController extends Controller
                     }
                     return redirect()->intended(route('my-ads'));
                 }else{
-                    return redirect()->back()->with('error', 'Username/Password Combo Incorrect');
+                    return redirect()->back()->with('error', 'Username/Password Combination Incorrect');
                 }
             }else{
-                return redirect()->back()->with('error', 'Username/Password Combo Incorrect');
+                return redirect()->back()->with('error', 'Username/Password Combination Incorrect');
             }
         }
     }

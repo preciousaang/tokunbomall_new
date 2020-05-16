@@ -52,3 +52,11 @@ Route::middleware('auth')->group(function(){
 
 Route::get('classified/{category}', 'ProductsController@list')->name('list-product');
 Route::get('single/{id}/{slug}', 'ProductsController@view')->name('single-product');
+
+Route::get('sitemap', function(){
+    return view('sitemap');
+})->name('sitemap');
+
+Route::get('how-it-works', function(){
+    return view('howitworks');
+})->name('how-it-works');
