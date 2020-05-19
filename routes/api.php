@@ -32,11 +32,11 @@ Route::get('/states', function(){
 
 Route::namespace('Api')->group(function(){
     
-    Route::post('login', 'AuthController@login')->middleware('sanctum:guest');
+    Route::post('login', 'AuthController@login')->middleware('guest');
 });
 
 Route::namespace('Users')->group(function(){
-    Route::post('register', 'RegistrationController@register')->middleware('sanctum:guest');
+    Route::post('register', 'RegistrationController@register')->middleware('guest');
 
     Route::middleware('auth:sanctum')->group(function(){
         Route::post('edit-profile', 'DashboardController@updateProfile');
