@@ -42,4 +42,12 @@ class User extends Authenticatable
     public function products(){
         return $this->hasMany('App\Product');
     }
+
+    public function sentMessages(){
+        return $this->hasMany('App\Message', 'sender_id');
+    }
+
+    public function receivedMessages(){
+        return $this->hasMany('App\Message', 'receiver_id');
+    }
 }

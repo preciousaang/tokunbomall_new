@@ -51,6 +51,26 @@
         <div class="interested text-center">
           <h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
           <p><i class="glyphicon glyphicon-earphone"></i>{{$product->user->phone}}</p>
+
+          @auth
+          @if(auth()->id() !== $product->user->id)
+            @include('partials.partials')
+            <br>              
+            <div class="post-ad-form">            
+            <form action="{{route('send-message')}}" method="post">
+              @csrf
+                  <input type="hidden" name="user" value="{{$product->user->id}}">
+                  <textarea                 
+                  name="message" class="" style="width: 100%;" placeholder="Send a message to the seller">{{old('message')}}</textarea>   
+                  <button class="btn btn-success" type="submit"><i class="fa fa-send"></i> Send a message to the seller</button>    
+            </form>
+            
+           </div>    
+           @endif
+           @else
+            <br>
+            <a class="btn btn-info" href="{{route('login-form')}}">Login to message seller.</a>
+          @endauth
         </div>
         <div class="tips">
           <h4>Safety Tips for Buyers</h4>
@@ -70,13 +90,6 @@
 <script src="{{asset('/js/jquery.min.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('/js/bootstrap-select.js')}}"></script>
-<script src="{{asset('/js/jquery.leanModal.min.js')}}"></script>
-<script src="{{asset('/js/jquery.uls.data.js')}}"></script>
-<script src="{{asset('/js/jquery.uls.data.utils.js')}}"></script>
-<script src="{{asset('/js/jquery.uls.lcd.js')}}"></script>
-<script src="{{asset('/js/jquery.uls.languagefilter.js')}}"></script>
-<script src="{{asset('/js/jquery.uls.regionfilter.js')}}"></script>
-<script src="{{asset('/js/jquery.uls.core.js')}}"></script>
 <script src="{{asset('/js/jquery.flexisel.js')}}"></script>
 <script src="{{asset('/js/jquery.flexslider.js')}}"></script>
 <script>
@@ -89,37 +102,5 @@ $(window).load(function() {
 });
 </script>
 <script>
-$('#myModal').modal('');
-</script>
-<script>
-  $(document).ready(function () {
-    var mySelect = $('#first-disabled2');
-
-    $('#special').on('click', function () {
-      mySelect.find('option:selected').prop('disabled', true);
-      mySelect.selectpicker('refresh');
-    });
-
-    $('#special2').on('click', function () {
-      mySelect.find('option:disabled').prop('disabled', false);
-      mySelect.selectpicker('refresh');
-    });
-
-    $('#basic2').selectpicker({
-      liveSearch: true,
-      maxOptions: 1
-    });
-  });
-</script>
-<script>
-$( document ).ready( function() {
-	$( '.uls-trigger' ).uls( {
-		onSelect : function( language ) {
-			var languageName = $.uls.data.getAutonym( language );
-			$( '.uls-trigger' ).text( languageName );
-		},
-		quickList: ['en', 'hi', 'he', 'ml', 'ta', 'fr'] //FIXME
-	} );
-} );
 </script>
 @endsection

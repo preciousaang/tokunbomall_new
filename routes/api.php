@@ -47,6 +47,10 @@ Route::namespace('Users')->group(function(){
         Route::get('my-ads', 'DashboardController@myAds');
         Route::get('change-state/{id}', 'DashboardController@changeState');
         Route::post('bulk-action', 'DashboardController@bulkAction');
+
+        Route::post('send-message', 'DashboardController@sendMessage');
+        Route::get('messages-list', 'DashboardController@messageList');
+        Route::get('message/{id}', 'DashboardController@readMessage');
     });
 });
 

@@ -30,12 +30,16 @@ Route::namespace('Users')->group(function(){
         Route::post('edit-password', 'DashboardController@changePassword')->name('change-password');
         Route::get('change-state/{id}', 'DashboardController@changeState')->name('change-state');
         Route::post('bulk-action', 'DashboardController@bulkAction')->name('bulk-action');
+        Route::get('send-message', 'DashboardController@messageForm')->name('message-form');
+        Route::post('send-message', 'DashboardController@sendMessage')->name('send-message');
+        Route::get('messages-list', 'DashboardController@messageList')->name('message-list');
+        Route::get('message/{id}', 'DashboardController@readMessage')->name('read-message');
     });
 });
 
 Route::namespace('Auth')->group(function(){
     Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('passwor/reset', 'ResetPasswordController@reset')->name('password.update');
+    Route::post('password/reset', 'ResetPasswordController@reset')->name('password.update');
     Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
     Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     

@@ -8,9 +8,56 @@ use App\Product;
 use App\Category;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use App\Message;
 
 class DashboardController extends Controller
 {
+
+    public function message(){        
+        return view('messages.send');
+    }
+
+    public function sendMessage(Request $request){
+        $request->validate([
+            'user' => 'required|exists:users,id',
+            'message' => 'required'
+        ]);
+
+        $newMessage = auth()->user()->sentMessages()->create([
+            'receiver_id' => $request->post('user'),
+            'body'=>$request->post('message')
+        ]);
+
+        if($request->wantsJson()){
+            return response()->json(['message'=>'Message Delivered Successfully.'], 200);
+        }
+
+        if($newMessage) return redirect()->back()->with(['success'=>'Message Delivered Successfully']);
+    }
+
+    public function messageList(){
+        if($request->wantsJson()){
+            return response()->json(['messages'=>auth()->user()->receivedMessages()->latest()->paginate(25)], 200);
+        }
+        return view('messages.list', [
+            'messages'=>auth()->user()->receivedMessages()->latest()->paginate(25)
+        ]);
+    }
+
+    public function readMessage($id){
+        $message = Message::findOrFail($id);        
+        $this->authorize('view', $message);
+        $message->read = 1;
+        $message->save();
+
+        if($request->wantsJson()){
+            return response()->json(['message'=>$message], 200);
+        }
+        return view('messages.read', [
+            'message'=>$message
+        ]);
+    }
+
     public function list(Request $request, $state=null){
         $this->authorize('viewAll', Product::class);
         if($state){
