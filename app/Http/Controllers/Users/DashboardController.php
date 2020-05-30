@@ -35,7 +35,7 @@ class DashboardController extends Controller
         if($newMessage) return redirect()->back()->with(['success'=>'Message Delivered Successfully']);
     }
 
-    public function messageList(){
+    public function messageList(Request $request){
         if($request->wantsJson()){
             return response()->json(['messages'=>auth()->user()->receivedMessages()->latest()->paginate(25)], 200);
         }
